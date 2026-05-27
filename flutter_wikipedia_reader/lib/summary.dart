@@ -51,18 +51,18 @@ class Summary {
   static Summary fromJson(Map<String, Object?> json) {
     return switch (json) {
       {
-        'titles': final Map<String, Object?> titles,
-        'pageid': final int pageId,
-        'extract': final String extract,
-        'extract_html': final String extractHtml,
-        'thumbnail': final Map<String, Object?> thumbnail,
-        'originalimage': final Map<String, Object?> originalImage,
-        'lang': final String lang,
-        'dir': final String dir,
-        'description': final String description,
-        'content_urls': {
-          'desktop': {'page': final String url},
-          'mobile': {'page': String _},
+        "titles": final Map<String, Object?> titles,
+        "pageid": final int pageId,
+        "extract": final String extract,
+        "extract_html": final String extractHtml,
+        "thumbnail": final Map<String, Object?> thumbnail,
+        "originalimage": final Map<String, Object?> originalImage,
+        "lang": final String lang,
+        "dir": final String dir,
+        "description": final String description,
+        "content_urls": {
+          "desktop": {"page": final String url},
+          "mobile": {"page": String _},
         },
       } =>
         Summary(
@@ -78,16 +78,16 @@ class Summary {
           url: url,
         ),
       {
-        'titles': final Map<String, Object?> titles,
-        'pageid': final int pageId,
-        'extract': final String extract,
-        'extract_html': final String extractHtml,
-        'lang': final String lang,
-        'dir': final String dir,
-        'description': final String description,
-        'content_urls': {
-          'desktop': {'page': final String url},
-          'mobile': {'page': String _},
+        "titles": final Map<String, Object?> titles,
+        "pageid": final int pageId,
+        "extract": final String extract,
+        "extract_html": final String extractHtml,
+        "lang": final String lang,
+        "dir": final String dir,
+        "description": final String description,
+        "content_urls": {
+          "desktop": {"page": final String url},
+          "mobile": {"page": String _},
         },
       } =>
         Summary(
@@ -101,15 +101,15 @@ class Summary {
           url: url,
         ),
       {
-        'titles': final Map<String, Object?> titles,
-        'pageid': final int pageId,
-        'extract': final String extract,
-        'extract_html': final String extractHtml,
-        'lang': final String lang,
-        'dir': final String dir,
-        'content_urls': {
-          'desktop': {'page': final String url},
-          'mobile': {'page': String _},
+        "titles": final Map<String, Object?> titles,
+        "pageid": final int pageId,
+        "extract": final String extract,
+        "extract_html": final String extractHtml,
+        "lang": final String lang,
+        "dir": final String dir,
+        "content_urls": {
+          "desktop": {"page": final String url},
+          "mobile": {"page": String _},
         },
       } =>
         Summary(
@@ -121,23 +121,23 @@ class Summary {
           dir: dir,
           url: url,
         ),
-      _ => throw FormatException('Could not deserialize Summary, json=$json'),
+      _ => throw FormatException("Could not deserialize Summary, json=$json"),
     };
   }
 
   @override
   String toString() =>
-      'Summary['
-      'titles=$titles, '
-      'pageId=$pageId, '
-      'extract=$extract, '
-      'extractHtml=$extractHtml, '
+      "Summary["
+      "titles=$titles, "
+      "pageId=$pageId, "
+      "extract=$extract, "
+      "extractHtml=$extractHtml, "
       'thumbnail=${thumbnail ?? 'null'}, '
       'originalImage=${originalImage ?? 'null'}, '
-      'lang=$lang, '
-      'dir=$dir, '
-      'description=$description'
-      ']';
+      "lang=$lang, "
+      "dir=$dir, "
+      "description=$description"
+      "]";
 }
 
 // Image path and size, but doesn't contain any Wikipedia descriptions.
@@ -158,33 +158,33 @@ class ImageFile {
   String get extension {
     final extension = getFileExtension(source);
     // By default, return a non-viable image extension.
-    return extension ?? 'err';
+    return extension ?? "err";
   }
 
   /// Returns a JSON map representation of this [ImageFile].
   Map<String, Object?> toJson() {
     return <String, Object?>{
-      'source': source,
-      'width': width,
-      'height': height,
+      "source": source,
+      "width": width,
+      "height": height,
     };
   }
 
   /// Returns a new [ImageFile] instance with its values populated from [json].
   static ImageFile fromJson(Map<String, Object?> json) {
     if (json case {
-      'source': final String source,
-      'height': final int height,
-      'width': final int width,
+      "source": final String source,
+      "height": final int height,
+      "width": final int width,
     }) {
       return ImageFile(source: source, width: width, height: height);
     }
-    throw FormatException('Could not deserialize OriginalImage, json=$json');
+    throw FormatException("Could not deserialize OriginalImage, json=$json");
   }
 
   @override
   String toString() =>
-      'OriginalImage[source_=$source, width=$width, height=$height]';
+      "OriginalImage[source_=$source, width=$width, height=$height]";
 }
 
 class TitlesSet {
@@ -211,9 +211,9 @@ class TitlesSet {
   /// Returns a new [TitlesSet] instance with its values populated from [json].
   static TitlesSet fromJson(Map<String, Object?> json) {
     if (json case {
-      'canonical': final String canonical,
-      'normalized': final String normalized,
-      'display': final String display,
+      "canonical": final String canonical,
+      "normalized": final String normalized,
+      "display": final String display,
     }) {
       return TitlesSet(
         canonical: canonical,
@@ -221,22 +221,22 @@ class TitlesSet {
         display: display,
       );
     }
-    throw FormatException('Could not deserialize TitleSet, json=$json');
+    throw FormatException("Could not deserialize TitleSet, json=$json");
   }
 
   @override
   String toString() =>
-      'TitlesSet['
-      'canonical=$canonical, '
-      'normalized=$normalized, '
-      'display=$display'
-      ']';
+      "TitlesSet["
+      "canonical=$canonical, "
+      "normalized=$normalized, "
+      "display=$display"
+      "]";
 }
 
 String? getFileExtension(String file) {
-  final segments = file.split('.');
+  final segments = file.split(".");
   if (segments.isNotEmpty) return segments.last;
   return null;
 }
 
-const acceptableImageFormats = ['png', 'jpg', 'jpeg'];
+const acceptableImageFormats = ["png", "jpg", "jpeg"];
